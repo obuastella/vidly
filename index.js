@@ -32,3 +32,11 @@ app.get("/", (req, res) => {
 app.get("/genres", (req, res) => {
   res.status(200).send(genres);
 });
+
+// get genres by id
+app.get("/genres/:id", (req, res) => {
+  const genre = genres.find((g) => g.id === parseInt(req.params.id));
+  if (!genre)
+    return res.status(404).send("This genre with the given id was not found");
+  res.send(genre);
+});
